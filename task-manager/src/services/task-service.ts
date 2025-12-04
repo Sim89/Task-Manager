@@ -1,7 +1,6 @@
 import {Injectable, signal} from '@angular/core';
 import {Task} from '../models/task-model';
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -41,5 +40,4 @@ export class TaskService {
   public getTaskById(id: number): Task | undefined {
     return this._tasks().find(task => task.id === id);
   }
-
 }

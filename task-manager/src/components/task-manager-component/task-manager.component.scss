@@ -1,0 +1,27 @@
+.task-manager {
+  padding: 2rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+
+  .d-flex {
+    display: flex;
+  }
+
+  .justify-content-between {
+    justify-content: space-between;
+  }
+
+  .align-items-end {
+    align-items: flex-end;
+  }
+
+  h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #3e81c3;
+    margin: 0;
+  }
+
+}
+
