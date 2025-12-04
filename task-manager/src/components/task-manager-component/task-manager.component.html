@@ -3,6 +3,12 @@
             <div class="d-flex justify-content-between align-items-end">
                 <title title="Task Manager" i18n-title></title>
               <h1>Task Manager</h1>
+              <app-task-list
+                [tasks]="tasks()"
+                (updateTask)="updateTask($event)"
+                (deleteTask)="deleteTask($event)"
+              >
+              </app-task-list>
             </div>
         </ng-container>
 </div>
