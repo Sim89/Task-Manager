@@ -1,0 +1,9 @@
+<ul>
+  @for (task of tasks(); track task.id) {
+    <li>
+      {{ task.title }}
+      <button (click)="onUpdateTask(task)">Update</button>
+      <button (click)="onDeleteTask(task.id)">Delete</button>
+    </li>
+  }
+</ul>

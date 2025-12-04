@@ -1,10 +1,13 @@
 import {Component, computed, inject, signal} from '@angular/core';
 import {TaskService} from '../../services/task-service';
 import {Task} from '../../models/task-model';
+import {TaskListComponent} from '../task-list/task-list.component';
 
 @Component({
   selector: 'task-manager',
-  imports: [],
+  imports: [
+    TaskListComponent
+  ],
   templateUrl: './task-manager.component.html',
   styleUrl: './task-manager.component.scss',
 })
@@ -25,16 +28,17 @@ public currentTask = signal<Task>(this.defaultTask());
 public resetCurrentTask(): void {
   this.currentTask.set(this.defaultTask());
 }
+//
+// public addNewTask(newTask: Task): void {
+//   if (!newTask.id) {
+//     newTask.id = Date.now();
+//   }
+//   this._taskService.addTask(newTask);
+//   this.resetCurrentTask();
+// }
 
-public addNewTask(): void {
-  const newTask = { ...this.currentTask() };
+public updateTask(updateTask: Task): void {
 
-  this._taskService.addTask(newTask);
-  this.resetCurrentTask();
-}
-
-public updateTask(): void {
-  const updateTask = { ...this.currentTask() };
  this._taskService.updateTask(updateTask);
  this.resetCurrentTask();
 }
