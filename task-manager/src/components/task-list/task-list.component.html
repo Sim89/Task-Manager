@@ -1,9 +1,12 @@
 <ul>
   @for (task of tasks(); track task.id) {
     <li>
-      {{ task.title }}
-      <button (click)="onUpdateTask(task)">Update</button>
-      <button (click)="onDeleteTask(task.id)">Delete</button>
+      <app-task-item
+        [task]="task"
+        (completeTask)="onCompleteTask($event)"
+        (updateTask)="onUpdateTask($event)"
+        (deleteTask)="onDeleteTask($event)"
+      ></app-task-item>
     </li>
   }
 </ul>
