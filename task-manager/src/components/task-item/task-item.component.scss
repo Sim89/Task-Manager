@@ -1,0 +1,24 @@
+.completed {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.card-title.text-decoration-line-through {
+  color: #888;
+}
+
+.bg-light {
+  background-color: #f8f9fa !important;
+}
+
+.badge.bg-success {
+  font-size: 0.85em;
+}
+
+.card {
+  border-radius: 0.75rem;
+}
+
+.card-footer {
+  border-top: 1px solid #eee;
+}
