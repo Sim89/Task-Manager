@@ -1,6 +1,6 @@
-<ul>
+<ul class="task-list">
   @for (task of tasks(); track task.id) {
-    <li>
+    <li >
       <app-task-item
         [task]="task"
         (completeTask)="onCompleteTask($event)"

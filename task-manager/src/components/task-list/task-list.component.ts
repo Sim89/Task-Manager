@@ -10,14 +10,9 @@ import {TaskItemComponent} from '../task-item/task-item.component';
 })
 export class TaskListComponent {
 public tasks: InputSignal<Array<Task>> = input<Array<Task>>([]);
-public addNewTask = output<Task>();
 public updateTask = output<Task>();
 public deleteTask = output<number>();
 public completeTask = output<number>();
-
-onAddTask(task: Task):void {
-  this.addNewTask.emit(task);
-}
 
 onUpdateTask(task: Task): void {
   this.updateTask.emit(task);
