@@ -21,15 +21,14 @@ export class TaskFormComponent {
   });
 
   onSubmit(): void {
+    const formValue = this.taskForm.value;
     if (this.taskForm.valid) {
       const newTask: Task = {
         id: Date.now(),
-        title: this.taskForm.controls.title.value ?? '',
-        description: this.taskForm.controls.description.value ?? '',
-        completed: !!this.taskForm.controls.completed.value
-      };
+       ...formValue
+      } as Task;
       this.addTask.emit(newTask);
-      this.taskForm.reset({ title: '', description: '', completed: false });
+      this.taskForm.reset();
     }
   }
 }
