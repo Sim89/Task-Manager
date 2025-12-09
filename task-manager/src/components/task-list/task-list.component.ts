@@ -1,6 +1,7 @@
-import {Component, input, InputSignal, output} from '@angular/core';
+import {Component, inject, Signal} from '@angular/core';
 import {Task} from '../../models/task-model';
 import {TaskItemComponent} from '../task-item/task-item.component';
+import {TaskService} from '../../services/task-service';
 
 @Component({
   selector: 'app-task-list',
@@ -9,21 +10,21 @@ import {TaskItemComponent} from '../task-item/task-item.component';
   styleUrl: './task-list.component.scss',
 })
 export class TaskListComponent {
-public tasks: InputSignal<Array<Task>> = input<Array<Task>>([]);
-public updateTask = output<Task>();
-public deleteTask = output<number>();
-public completeTask = output<number>();
+  private readonly _taskService = inject(TaskService);
+  public tasks: Signal<Task[]> = this._taskService.tasks;
 
-onUpdateTask(task: Task): void {
-  this.updateTask.emit(task);
-}
+  onUpdateTask(task: Task): void {
+    this._taskService.updateTask(task);
+  }
 
-onDeleteTask(id: number): void {
-  this.deleteTask.emit(id);
-}
+  onDeleteTask(id: number): void {
+    this._taskService.deleteTask(id);
+  }
 
-onCompleteTask(id: number): void {
-  this.completeTask.emit(id);
-}
-
+  onCompleteTask(id: number): void {
+    const completedTask = this._taskService.getTaskById(id);
+    if(completedTask) {
+      this._taskService.updateTask({...completedTask, completed: true});
+    }
+  }
 }

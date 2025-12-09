@@ -16,7 +16,7 @@ import {TaskFormComponent} from '../task-form/task-form.component';
 export class TaskManagerComponent {
 private readonly _taskService = inject(TaskService);
 
-public readonly tasks = computed(() => this._taskService.tasks());
+public readonly tasks = this._taskService.tasks();
 
 public readonly defaultTask = signal<Task>({
   id: 0,
@@ -39,19 +39,19 @@ public addNewTask(newTask: Task): void {
   this.resetCurrentTask();
 }
 
-public updateTask(updateTask: Task): void {
- this._taskService.updateTask(updateTask);
- this.resetCurrentTask();
-}
-
-public deleteTask(id: number): void {
-this._taskService.deleteTask(id);
-}
-
-public completeTask(id: number): void {
-  const task = this._taskService.getTaskById(id);
-  if (task) {
-    this._taskService.updateTask({...task, completed: true});
-  }
-}
+// public updateTask(updateTask: Task): void {
+//  this._taskService.updateTask(updateTask);
+//  this.resetCurrentTask();
+// }
+//
+// public deleteTask(id: number): void {
+// this._taskService.deleteTask(id);
+// }
+//
+// public completeTask(id: number): void {
+//   const task = this._taskService.getTaskById(id);
+//   if (task) {
+//     this._taskService.updateTask({...task, completed: true});
+//   }
+// }
 }

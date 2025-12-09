@@ -26,9 +26,9 @@ export class TaskService {
   }
 
   public updateTask(updatedTask: Task): void {
-    const currentTaskUpdated = this._tasks().map(task => task.id === updatedTask.id ? updatedTask : task);
-    this._tasks.set(currentTaskUpdated);
-    this.saveTasks(currentTaskUpdated);
+    const updatedNewTask = this._tasks().map(task => task.id === updatedTask.id ? updatedTask : task);
+    this._tasks.set(updatedNewTask);
+    this.saveTasks(updatedNewTask);
   }
 
   public deleteTask(id: number): void {
