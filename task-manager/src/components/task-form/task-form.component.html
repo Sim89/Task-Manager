@@ -1,20 +1,22 @@
 <form [formGroup]="taskForm" class="mb-3" (ngSubmit)="onSubmit()">
   <div class="mb-3">
-    <label for="title" class="form-label">Title</label>
+    <label for="title" class="form-label"></label>
     <input
       type="text"
       class="form-control"
       id="title"
+      placeholder="Task Title"
       formControlName="title"
       required
     />
   </div>
   <div class="mb-3">
-    <label for="description" class="form-label">Description</label>
+    <label for="description" class="form-label"></label>
     <input
       type="text"
       class="form-control"
       id="description"
+      placeholder="Task Description"
       formControlName="description"
     />
   </div>
