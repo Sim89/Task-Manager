@@ -25,19 +25,50 @@ export class TaskService {
     this.saveTasks(currentTasks);
   }
 
+  // public updateTask(updatedTask: Task): void {
+  //   const updatedNewTask = this._tasks().map(task => task.id === updatedTask.id ? updatedTask : task);
+  //   this._tasks.set(updatedNewTask);
+  //   this.saveTasks(updatedNewTask);
+  // }
+
   public updateTask(updatedTask: Task): void {
-    const updatedNewTask = this._tasks().map(task => task.id === updatedTask.id ? updatedTask : task);
+    const updatedNewTask = this._tasks().map(t => ({ ...t }));
+    updatedNewTask.forEach(task => {
+      if(task.id === updatedTask.id) Object.assign(task, updatedTask);
+    });
     this._tasks.set(updatedNewTask);
     this.saveTasks(updatedNewTask);
   }
+/* deleting a task using filter */
+  // public deleteTask(id: number): void {
+  //   const deletedTaskUpdated = this._tasks().filter(task => task.id !== id);
+  //   this._tasks.set(deletedTaskUpdated);
+  //   this.saveTasks(deletedTaskUpdated);
+  // }
 
+  /* deleting a task using Splice */
+  // public deleteTask(id: number): void {
+  //   const deletedTaskUpdated = this._tasks().map(task => ({ ...task }));
+  //   const index = deletedTaskUpdated.findIndex(task => task.id === id);
+  //   if(index === -1) return;
+  //   deletedTaskUpdated.splice(index, 1);
+  //   this._tasks.set(deletedTaskUpdated);
+  //   this.saveTasks(deletedTaskUpdated);
+  // }
+/* deleting a task using reduce */
   public deleteTask(id: number): void {
-    const deletedTaskUpdated = this._tasks().filter(task => task.id !== id);
+    const deletedTaskUpdated = this._tasks().reduce<Task[]>((acc, task) => {
+      if(task.id !== id) acc.push({ ...task});
+      return acc;
+    }, []);
     this._tasks.set(deletedTaskUpdated);
     this.saveTasks(deletedTaskUpdated);
   }
 
   public getTaskById(id: number): Task | undefined {
-    return this._tasks().find(task => task.id === id);
+    // return this._tasks().find(task => task.id === id);
+  const tasks = this._tasks();
+  const index = tasks.findIndex((task) => task.id === id);
+  return index !== -1 ? { ...tasks[index] } : undefined;
   }
 }
