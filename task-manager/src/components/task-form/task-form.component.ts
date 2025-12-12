@@ -1,6 +1,7 @@
-import {Component, output} from '@angular/core';
+import {Component, inject, output} from '@angular/core';
 import { Task } from '../../models/task-model';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-task-form',
@@ -11,6 +12,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
   ]
 })
 export class TaskFormComponent {
+  private router = inject(Router);
   public addTask = output<Task>();
 
   public taskForm = new FormGroup({
@@ -29,6 +31,13 @@ export class TaskFormComponent {
       } as Task;
       this.addTask.emit(newTask);
       this.taskForm.reset();
+      this.router.navigate(['/tasks/task-list']).then(success => {
+        if(success) {
+          console.log('Navigation to task list successful');
+        }
+      }).catch(error => {
+        console.error('Navigation to task list failed', error);
+      })
     }
   }
 }
